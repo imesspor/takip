@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body { background-color: #f0f2f5; font-family: sans-serif; min-height: 100vh; display: flex; flex-direction: column; margin: 0; }
-        #auth-wrapper { max-width: 900px; margin: 40px auto; padding: 20px; }
+        #auth-wrapper { display: none; width: 100%; max-width: 900px; margin: 40px auto; padding: 20px; }
         .auth-card { background: white; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); padding: 30px; height: 100%; }
         .auth-divider { border-left: 1px solid #dee2e6; height: 100%; }
         #app-content { display: none; width: 100%; }
@@ -56,6 +56,16 @@
         .install-select { font-size: 0.7rem; padding: 2px; border-radius: 4px; border: 1px solid #ced4da; margin-left: 5px; font-weight: bold; height: 28px; background: #fff; color: #000; }
         
         @media (max-width: 768px) { .auth-divider { border-left: none; border-top: 1px solid #dee2e6; margin: 20px 0; } }
+        .nav-search { flex: 1; margin: 0 1.5rem; }
+        .nav-search input { max-width: 420px; }
+        @media (max-width: 768px) {
+            .navbar { flex-wrap: wrap; gap: 8px; }
+            .navbar-brand img { height: 40px !important; }
+            .nav-search { order: 3; flex-basis: 100%; margin: 0; }
+            .nav-search input { max-width: none; }
+            .main-container { scroll-snap-type: x mandatory; padding: 10px; gap: 10px; }
+            .column { min-width: 88vw; scroll-snap-align: start; height: calc(100vh - 140px); }
+        }
 
         .user-row { background: #f8f9fa; border-radius: 8px; padding: 10px; margin-bottom: 8px; border: 1px solid #eee; }
         .perm-chip { font-size: 0.65rem; padding: 2px 8px; border-radius: 10px; font-weight: bold; }
@@ -113,8 +123,8 @@
         <a class="navbar-brand p-0" href="#">
             <img src="https://i.ibb.co/LdyvYqB/imes-logo-final.png" alt="İMES SPOR" style="height: 50px; width: auto; object-fit: contain;">
         </a>
-        <div class="flex-grow-1 mx-4">
-            <input type="text" id="search_input" class="form-control form-control-sm w-50" placeholder="🔍 Ara (Müşteri, Bölge, Not...)">
+        <div class="nav-search">
+            <input type="text" id="search_input" class="form-control form-control-sm" placeholder="🔍 Ara (Müşteri, Bölge, Not...)">
         </div>
         <div class="d-flex align-items-center">
             <span id="active-user" class="text-white me-3 small fw-bold"></span>
@@ -125,25 +135,25 @@
 
     <div id="admin-panel" class="p-3 bg-white shadow-sm border-bottom hidden">
         <div class="row g-2 px-2">
-            <div class="col-md-2"><input type="text" id="m_adi" class="form-control form-control-sm" placeholder="Firma / Kişi"></div>
-            <div class="col-md-2"><input type="text" id="m_bolge" class="form-control form-control-sm" placeholder="Sevk Adresi"></div>
-            <div class="col-md-2"><input type="text" id="m_iletisim" class="form-control form-control-sm" placeholder="Kişi / Telefon"></div>
-            <div class="col-md-2">
+            <div class="col-12 col-md"><input type="text" id="m_adi" class="form-control form-control-sm" placeholder="Firma / Kişi"></div>
+            <div class="col-12 col-md"><input type="text" id="m_bolge" class="form-control form-control-sm" placeholder="Sevk Adresi"></div>
+            <div class="col-12 col-md"><input type="text" id="m_iletisim" class="form-control form-control-sm" placeholder="Kişi / Telefon"></div>
+            <div class="col-12 col-md">
                 <input type="date" id="m_muhtemel_tarih" class="form-control form-control-sm">
             </div>
-            <div class="col-md-2">
+            <div class="col-12 col-md">
                 <select id="m_hazir_durum" class="form-select form-select-sm">
                     <option value="false">⏳ BEKLEMEDE</option>
                     <option value="true">✅ SEVKE HAZIR</option>
                 </select>
             </div>
-            <div class="col-md-2">
+            <div class="col-12 col-md">
                 <select id="m_kurulum_gereksinimi" class="form-select form-select-sm">
                     <option value="KURULUM YOK">🛠 KURULUM YOK</option>
                     <option value="KURULUM VAR">🛠 KURULUM VAR</option>
                 </select>
             </div>
-            <div class="col-md-1"><button id="btnKaydet" class="btn btn-dark btn-sm w-100 fw-bold">KAYDET</button></div>
+            <div class="col-12 col-md-auto"><button id="btnKaydet" class="btn btn-dark btn-sm w-100 fw-bold">KAYDET</button></div>
         </div>
     </div>
 
